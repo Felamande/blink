@@ -3,20 +3,12 @@
 
 typedef void(WKE_CALL_TYPE *FN_wkeInitializeEx)(const wkeSettings *settings);
 
-void initBlink(char *dllpath, char *localstorage, char *cookiejar)
+void initBlink(char *dllpath)
 {
     //转换路径字符串类型
     size_t cSize = strlen(dllpath) + 1;
     wchar_t *wdllpath = (wchar_t *)malloc(sizeof(wchar_t) * cSize);
     mbstowcs(wdllpath, dllpath, cSize);
-
-    cSize = strlen(localstorage) + 1;
-    wlocalstorage = (wchar_t *)malloc(sizeof(wchar_t) * cSize);
-    mbstowcs(wlocalstorage, localstorage, cSize);
-
-    cSize = strlen(cookiejar) + 1;
-    wcookiejar = (wchar_t *)malloc(sizeof(wchar_t) * cSize);
-    mbstowcs(wcookiejar, cookiejar, cSize);
 
     //加载dll
     HMODULE hMod = LoadLibraryW(wdllpath);
@@ -34,6 +26,4 @@ void initBlink(char *dllpath, char *localstorage, char *cookiejar)
     //释放内存
     free(wdllpath);
     free(dllpath);
-    free(localstorage);
-    free(cookiejar);
 }

@@ -8,6 +8,6 @@
 #include "event.h"
 #include "webview.h"
 
-void initBlink(char *dllpath, char *localstorage, char *cookiejar);
+void initBlink(char *dllpath);
 
 #endif
